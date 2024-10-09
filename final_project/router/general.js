@@ -2,6 +2,7 @@ const express = require('express');
 let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
+const axios = require("axios");
 const public_users = express.Router();
 
 
@@ -17,6 +18,15 @@ public_users.get('/',function (req, res) {
   
   return res.send(books);
 });
+
+// public_users.get("/", async function (req, res) {
+//   try {
+//     const response = await axios.get("https://nakulbhangal-5000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/");
+//     res.status(200).send(JSON.stringify(response.data, null, 2));
+//   } catch (error) {
+//     res.status(500).send("Error while fetching list of books");
+//   }
+// });
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
